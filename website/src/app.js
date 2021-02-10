@@ -100,6 +100,6 @@ request.session.isLoggedIn = false
 response.redirect('/home')
 
 })
-app.use('/dist', express.static(path.join(__dirname, 'dist')))
-app.use('/images', express.static(path.join(__dirname, 'images')))
-app.use('/views', express.static(path.join(__dirname, 'views')))
+//app.use('/dist', express.static(path.join(__dirname, 'dist')))
+//app.use('/images', express.static(path.join(__dirname, 'images')))
+//app.use('/views', express.static(path.join(__dirname, 'views')))
