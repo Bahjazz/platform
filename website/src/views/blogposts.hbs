@@ -1,0 +1,26 @@
+<h1>Welcome to my blog posts.</h1>
+<h2>Blogposts</h2>
+{{#if dbErrorOccured}}
+ can't display the page now, try again later.
+ {{else}}
+{{#if blogposts.length}}
+    {{#each blogposts}}
+    <div class="my-post">
+        <h3>#{{Id}} {{title}}</h3>
+        <p>{{content}}</p>
+             <form method="get" action= "/blogposts/blogpost/{{Id}}">
+        <input type="submit" class="btn btn-success" value="Details">
+      </form> 
+        {{#if ../isLoggedIn}}
+      <a href="/blogposts/updateblogpost/{{Id}}" class="btn btn-primary">Update</a>
+      <form method="post" action="/blogposts/deletepost/{{Id}}">
+      <input type="hidden" name="_csrf" value="{{../csrfToken}}"> 
+        <input type="submit" class="btn btn-primary" value="Delete post">  
+      </form>   
+      {{/if}}
+    </div>
+    {{/each}}
+{{else}}
+<p>There is no blogpost</p>
+{{/if}} 
+{{/if}}

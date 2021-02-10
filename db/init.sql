@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS humans(
+    VARCHAR(50) , INT age
+)

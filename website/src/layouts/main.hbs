@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="/dist/layoutt.css">
+    <link rel="icon" href="/images/logo.jpeg" type ="image/x-icon">
+
+    <title>BF</title>
+  </head>
+  <body>
+    
+<body>
+    <!--My name as logo on left side and navigation menue on the right-->
+  <header>
+   <div class="Container">
+       <div id="logo">
+          <a href="/home"><h1>Bahja Faqid</h1></a>
+       </div>
+       <nav>
+           <ul>
+               <li><a href="/home">Home</a></li>
+               <li><a href ="/about">About</a></li>
+               <li><a href="/contact">Contact</a></li>
+               <li><a href="/blogposts">Blogposts</a></li>
+               <li><a href="/guestbook">Guestbook Posts</a></li>
+               <li><a href="/portfolio">Software Projects</a></li>
+
+               {{#if isLoggedIn}}
+               <li><a href="/blogposts/admin">Admin</a></li>
+
+               {{/if}}
+           </ul>
+       </nav>
+   </div>
+   </header>
+  <main>
+    {{{body}}}
+</main>
+
+  
+  <footer>
+    {{#unless isLoggedIn}}<a href="/login" class="btn btn-link">Login</a>{{/unless}}
+  {{#if isLoggedIn}}<a href="/logout" class="btn btn-link">Logout</a>{{/if}}
+  <p>Bahja faqid, copyright &copy; 2020</p>
+
+</footer>
+</body>   
+</html>

@@ -1,0 +1,56 @@
+<section id=guestbook>
+    <div class="guest-image">
+        <img src="/images/sticky-note-681016.jpg" class="contact-image" alt="guestbook image">
+    </div>
+    <div class="contact-form">
+        <form method="post" action="/guestbook/guestbook">
+            <h2> Create a Guestbook posts</h2>
+        {{#if validationErrors.length}}
+            <p style="color: black;">Couldn't create guestbook because:</p>
+            <ul style="color: black;">
+              {{#each validationErrors}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+            <div class="contact-box">
+              <input type="hidden" name="_csrf" value="{{csrfToken}}"> 
+              <input type="text" name="title" placeholder="title">
+            </div>
+            <div class="contact-box">
+                <textarea name="content" placeholder="content" rows="3"></textarea>
+            </div>
+            <div class="contact-box">
+                <input type="submit" name="" value="Create">
+            </div>
+        </form>
+    </div>
+    </div>
+</section>
+
+<h2> welcome to my Guestbook</h2>
+{{#if dbError}}
+ can't display the page now, try again later.
+ {{else}}
+ {{#if guestbook.length}}
+    {{#each guestbook}}
+    <div class="my-post">
+        <h3>#{{Id}} {{title}}</h3>
+        <p>{{content}}</p>
+      <form method="get" action= "/guestbook/guestbooks/{{Id}}">
+        <input type="submit" class="btn btn-success" value="Details">
+      </form> 
+        {{#if ../isLoggedIn}}
+        <a href="/guestbook/updateguestbookposts/{{Id}}" class="btn btn-primary">Update</a>
+      <form method="post" action="/guestbook/deleteguestbookposts/{{Id}}">
+        <input type="hidden" name="_csrf" value="{{../csrfToken}}">
+        <input type="submit" class="btn btn-primary" value="Delete post">  
+      </form>   
+      {{/if}}
+    </div>
+    {{/each}}
+{{else}}
+<p>There is no guestbook posts</p>
+{{/if}}
+
+{{/if}}

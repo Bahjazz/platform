@@ -2,12 +2,12 @@ FROM node:15.6
 
 EXPOSE 8080
 
-WORKDIR /website
+WORKDIR /the-website
 
 COPY package*.json ./
 
-RUN npm install
+COPY src src
 
-COPY app.js ./
+RUN npm install
 
 CMD npm run start

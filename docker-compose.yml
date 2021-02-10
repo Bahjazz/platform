@@ -1,0 +1,16 @@
+
+version: "3.8"
+services: 
+   website:
+     build: ./website
+     ports :
+     - 3000:8080
+     volumes: 
+     - ./website/src/:/the-website/src/
+   db:
+      build: ./db
+      ports:
+        - 3306:3306
+      environment: 
+        MYSQL_ROOT_PASSWORD: bahja12
+        MYSQL_DATABASE: bahjazz
