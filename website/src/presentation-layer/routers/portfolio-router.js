@@ -1,6 +1,6 @@
 
 const express = require('express')
-const db = require('../db')
+const db = require('../../data-access-layer/db')
 const router = express.Router()
 const MIN_BLOG_TITLE_LENGTH = 2
 var csrf = require('csurf')

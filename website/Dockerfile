@@ -2,7 +2,7 @@ FROM node:15.6
 
 EXPOSE 8080
 
-WORKDIR /the-website
+WORKDIR /website
 
 COPY package*.json ./
 

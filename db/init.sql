@@ -1,3 +1,3 @@
 CREATE TABLE IF NOT EXISTS humans(
-    VARCHAR(50) , INT age
-)
+    name VARCHAR(50), age INT
+);
