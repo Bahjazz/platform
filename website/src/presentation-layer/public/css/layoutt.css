@@ -48,7 +48,7 @@ header li {
 }
 header #logo {
   float: left;
-  padding: 15px;
+  padding: 10px;
 }
 header #logo a {
   margin: 0;
@@ -68,7 +68,8 @@ header a:hover {
 /*background-info*/
 #background-info {
   min-height: 500px;
-  background-image: url("/images/pen-4337521.jpg");
+  background-image: url("/website/src/presentation-layer/images/Kill-Me-Heal-Me.jpg");
+  /*background-image: url("/images/pen-4337521.jpg");*/
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -86,6 +87,7 @@ header a:hover {
   font-size: 19px;
 }
 /*experience*/
+/*
 #experience {
   background: black;
   padding: 20px;
@@ -119,7 +121,28 @@ line-height: 1rem;
 text-align:center;
 }
 *
-
+*/
+.text-wrapper {  
+	float: left; 
+	width: 50%; 
+} 
+.text-wrapper img { 
+	width: 100%; 
+  padding: 20px;
+} 
+.text-wrapper p { 
+	text-align: center;
+  font-size: 18px;
+  color: black;
+ margin-bottom: 2px;
+ line-height: 1rem; 
+} 
+@media (max-width: 767px) { 
+	.text-wrapper { 
+		float: none; 
+		width: 100%; 
+	} 
+} 
 /*about page*/
 .about-Container {
   max-width: 1100px;
