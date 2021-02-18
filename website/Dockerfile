@@ -2,12 +2,14 @@ FROM node:15.6
 
 EXPOSE 8080
 
+
 WORKDIR /website
 
 COPY package*.json ./
 
-COPY src src
-
 RUN npm install
 
-CMD npm run start
+
+COPY src src
+
+CMD ["npm", "run" , "start"]

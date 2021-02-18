@@ -1,16 +1,17 @@
-
-version: "3.8"
-services: 
+version: "3"
+services:
    website:
      build: ./website
      ports :
-     - 3000:8080
+     - "3000:8080"
      volumes: 
-     - ./website/src/:/the-website/src/
-   db:
-      build: ./db
+     - "./website/src:/website/src"
+     depends_on:
+       - database
+   database:
+      build: ./database
       ports:
-        - 3306:3306
+        - "3306:3306"
       environment: 
-        MYSQL_ROOT_PASSWORD: bahja12
-        MYSQL_DATABASE: bahjazz
+       - MYSQL_ROOT_PASSWORD=abc123
+       - MYSQL_DATABASE=KdramaUnited

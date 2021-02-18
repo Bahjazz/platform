@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L src/presentation-layer/app.js",
+    "start": "nodemon -L src/main.js",
      "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,10 +12,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon":  "^2.0.7",
-    "mysql2": "^2.2.5",
-    "express-handlebars": "5.2.0",
-    "express-session": "1.17.1"
+    "express-handlebars": "^5.2.0",
+     "mysql": "^2.18.1",
+     "nodemon":  "^2.0.7",
+     "sequelize": "^6.5.0",
+     "sqlite3": "^5.0.1",
+     "awilix": "^4.3.1"
+
+    
 
   }
 }

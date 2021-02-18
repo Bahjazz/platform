@@ -1,0 +1,27 @@
+<div class="content">
+	<h2>Sign up</h2>
+	<p>Create a new account using the form below.</p>
+</div>
+
+{{#if errors.length}}
+<p>Fix the errors</p>
+<ul>
+	{{#each errors}}
+		<li>{{this}}</li>
+	{{/each}}
+</ul>
+{{/if}}
+
+<form action="" method="POST">
+	
+	<div>
+		Username: <input type="text" name="username" value="{{username}}">
+	</div>
+	
+	<div>
+		Password: <input type="password" name="password" value="{{password}}">
+	</div>
+	
+	<input type="submit" value="Sign up">
+	
+</form>
