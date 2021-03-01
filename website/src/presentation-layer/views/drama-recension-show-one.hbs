@@ -1,0 +1,30 @@
+<div class="content">
+<h1>Drama Recension</h1>
+{{#if errors.length}}
+	<p>Oh no, something went wrong:</p>
+	<ul>
+		{{#each errors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{else}}
+	
+	{{#if dramaRecension}}
+	<div class="recension-box">
+		<dl>
+			
+			<h4>Id:</h4>
+			<h4> {{dramaRecension.id}}</h4>
+			
+			<h2>Name: {{dramaRecension.name}}</h2>
+			<h2>Description: {{dramaRecension.description}}</h2>
+
+			
+		</dl>
+		</div>
+	{{else}}
+		<p>No, that drama recension doesn't exist.</p>
+	{{/if}}
+	
+{{/if}}
+</div>

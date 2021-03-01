@@ -1,49 +1,57 @@
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="/public/css/layoutt.css">
-    <title>kdrama</title>
 
-  
-  </head>
-  <body>
-    
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+  <link rel="stylesheet" href="/public/css/layoutt.css">
+  <title>kdrama</title>
+
+
+</head>
+
 <body>
+
+  <body>
     <!--My name as logo on left side and navigation menue on the right-->
-  <header>
-   <div class="Container">
-       <div id="logo">
-          <a href="/home"><h1>KdramaUnited</h1></a>
-       </div>
-       <nav>
-           <ul>
-               <li><a href="/home">Home</a></li>
-               <li><a href ="/community">Dramas</a></li>
-               <li><a href="/contact">contact</a></li>
-               <li><a href="/portfolio">WatchList</a></li>
-               <li><a href="/blogposts">Drama Recension</a></li>
-               <li><a href="/accounts">Accounts</a></li>
-              
+    <header>
+      <div class="Container">
+        <div id="logo">
+          <a href="/home">
+            <h1>KdramaUnited</h1>
+          </a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/dramas">Dramas</a></li>
+            <li><a href="/contact">contact</a></li>
+            <li><a href="/portfolio">WatchList</a></li>
 
-               {{#if isLoggedIn}}
-             <li><a href="/accounts/singIn">Sing In</a></li>
-               {{/if}}
-              <li><a href="/accounts/accounts-sign-up">Sing Up</a></li>
-           </ul>
-       </nav>
-   </div>
-   </header>
-  <main>
-    {{{body}}}
-</main>
+            <li><a href="/drama-recensions"> All Drama Recension</a></li>
+         
 
-  
-  <footer>
-    {{#unless isLoggedIn}}<a href="/login" class="btn btn-link">Login</a>{{/unless}}
-  {{#if isLoggedIn}}<a href="/logout" class="btn btn-link">Logout</a>{{/if}}
-  <p>By Bahja Faqid and Jenny Jansson</p>
+            <li><a href="/drama-recensions/drama-recension-create"> Create Drama Recension</a></li>
 
-</footer>
-</body>   
+            <li><a href="/accounts">Accounts</a></li>
+
+
+            {{#if isLoggedIn}}
+            {{/if}}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      {{{body}}}
+    </main>
+
+
+    <footer>
+     {{#unless isLoggedIn}}<a href="/accounts/login"> Sing In </a>|<a href="/accounts/accounts-sign-up"> Sing Up </a>{{/unless}}
+      {{#if isLoggedIn}}<a href="/logout" class="btn btn-link">Logout</a>{{/if}}
+      <p>By Bahja Faqid and Jenny Jansson</p>
+
+    </footer>
+  </body>
+
 </html>

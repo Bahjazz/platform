@@ -1,11 +1,17 @@
-const path = require("path")
 const express = require('express')
-
-
-const expressHandlebars = require('express-handlebars')
+const path = require("path")
 const bodyParser = require('body-parser')
 
-module.exports = function ({variousRouter,accountRouter}) {
+const expressSession = require("express-session")
+const expressHandlebars = require('express-handlebars')
+
+//const mongoStore = require("connect-mongo").default
+
+//const dbURI = "mongodb+srv://bahjakdrama:kdrama@cluster0.ajqfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+//const mongoose = require("mongoose")
+
+module.exports = function ({variousRouter,accountRouter, dramaRecensionRouter}) {
 
   const app = express()
   //Setup exports-handlebars
@@ -16,35 +22,38 @@ module.exports = function ({variousRouter,accountRouter}) {
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'layouts')
   }))
-  //handle static files in the public folder
   
-  //app.use(express.static(path.join(__dirname, 'public')))
-
-
-
-
+/*
+  app.use(expressSession({
+    secret: "absdefdshjdjfvcbvcvhh",
+    /*saveUninitialized: false,
+    resave: false,
+    store: mongoStore.create({
+      mongoUrl: dbURI,
+      collection: 'kdramaSessions'
+    })
+  }))
+  
+*/
+/*
+  app.use(function (request, response, next) {
+    const isLoggedIn = request.session.isLoggedIn
+    response.session.isLoggedIn = isLoggedIn
+    next()
+  })
+  */
 app.use(express.urlencoded({
   extended: false
 }))
-/*
-app.get("/home", function (request, response) {
-  response.render("home.hbs")
-})
-app.get("/community", function (request, response) {
-  response.render("community.hbs")
-})
-app.get('/', function (request, response) {
-  response.render("home.hbs")
-})
-app.get('/contact', function (request, response) {
-  response.render('contact.hbs')
-})
-*/
-  app.use(bodyParser.urlencoded())
+
+  app.use(bodyParser.urlencoded({
+    extended: false
+  }))
 
   // attch all router 
   app.use('/', variousRouter)
   app.use('/accounts', accountRouter)
+  app.use('/drama-recensions',dramaRecensionRouter )
 
   app.use('/css', express.static(path.join(__dirname, 'css')))
   app.use('/public', express.static(path.join(__dirname, 'public')))
@@ -54,4 +63,3 @@ app.get('/contact', function (request, response) {
 }
 
 
-console.log("Bahja, I restart the programm myself")

@@ -2,10 +2,13 @@ const awilix = require('awilix')
 
 const container = awilix.createContainer()
 container.register({
-accountRepository: awilix.asFunction(require('./data-access-layer/account-repository')),
+accountRepository: awilix.asFunction(require('./data-access-layer-sequelize/account-repository')),
 accountManager: awilix.asFunction(require('./business-logic-layer/account-manager')),
 accountRouter: awilix.asFunction(require('./presentation-layer/routers/account-router')),
 variousRouter: awilix.asFunction(require('./presentation-layer/routers/various-router')),
+dramaRecensionRouter: awilix.asFunction(require('./presentation-layer/routers/drama-recension-router')),
+dramaRecensionManager: awilix.asFunction(require('./business-logic-layer/drama-recension-manager')),
+dramaRecensionRepository:awilix.asFunction(require('./data-access-layer/drama-recension-repository')),
 app: awilix.asFunction(require('./presentation-layer/app'))
 })
 

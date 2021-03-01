@@ -1,7 +1,5 @@
 const { Sequelize, DataTypes, UniqueConstraintError } = require('sequelize')
-
 const sequelize = new Sequelize('sqlite::memory:')
-
 const Account = sequelize.define('Account', {
   username: {
     type: DataTypes.STRING,

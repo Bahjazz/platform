@@ -12,6 +12,12 @@ body {
   overflow: hidden;
 }
 
+.recension-box{
+  margin-left: 20px;
+  font-size: 15px;
+
+}
+
 
 .my-post{
     width: 30%;
@@ -98,8 +104,9 @@ header a:hover {
 	text-align: center;
   font-size: 18px;
   color: black;
- margin-bottom: 2px;
- line-height: 1rem; 
+  margin-bottom: 2px;
+  line-height: 1rem; 
+ 
 }
 .text-wrapper img { 
 	width: 100%; 
@@ -312,6 +319,7 @@ footer {
   text-align: center;
   font-size: 25px;
 }
+
 
 /*home*/
 @media (max-width: 768px) {

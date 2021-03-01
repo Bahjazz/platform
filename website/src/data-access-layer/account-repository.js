@@ -9,13 +9,13 @@ possible errors: internalError
 Success value: The fetched accounts in an array.
 */
 exports.getAllAccounts = function(callback){
-
  const query = 'SELECT * FROM accounts ORDER BY username'
  const values = []
 
  db.query(query, values,function(error,accounts){
 	 console.log('QUERY:' + accounts)
      if(error){
+
          callback(['internalError'],null)
      }else{
          callback([],accounts)
