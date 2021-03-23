@@ -8,9 +8,7 @@ module.exports = function () {
   router.get("/home", function (request, response) {
     response.render("home.hbs")
   })
-  router.get("/dramas", function (request, response) {
-    response.render("dramas.hbs")
-  })
+ 
   router.get("/contact", function (request, response) {
     response.render("contact.hbs")
   })
@@ -20,6 +18,9 @@ module.exports = function () {
   })
   
   
- 
+  router.get("/drama", function (request, response) {
+    response.render("drama-create.hbs")
+  })
+  
   return router
 }

@@ -1,3 +1,7 @@
+<head>
+	   <link rel="stylesheet" href="/public/css/login.css">
+
+</head>
 <div class="content">
 	<h2>Sign up</h2>
 	<p>Create a new account using the form below.</p>
@@ -11,6 +15,7 @@
 	{{/each}}
 </ul>
 {{/if}}
+<!--
 <div class="sing-up-box">
 <form action="" method="POST">
 	
@@ -25,4 +30,23 @@
 	<input type="submit" value="Sign up">
 	
 </form>
+   <input type="text" name="username"placeholder="username" value="{{username}}">
+      <input type="password" name="password"placeholder="password" value="{{password}}">
+
+
+</div>
+ -->
+
+<form action="" method="POST">
+
+<form class="login-box" method="POST">
+  <div>
+	  Username: <input type="text" name="username" value="{{username}}">
+   </div>
+   <div>
+	 Password: <input type="password" name="password" value="{{password}}">
+   </div>
+      <input type="submit" value="Sign up">
+ </form>
+ </form>
 </div>

@@ -22,21 +22,18 @@
         </div>
         <nav>
           <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/dramas">Dramas</a></li>
-            <li><a href="/contact">contact</a></li>
-            <li><a href="/portfolio">WatchList</a></li>
-
+            <li><a href="/home">Top Drama</a></li>
+            <li><a href="/dramas">All Dramas</a></li>
+            
             <li><a href="/drama-recensions"> All Drama Recension</a></li>
-         
-
-            <li><a href="/drama-recensions/drama-recension-create"> Create Drama Recension</a></li>
-
-            <li><a href="/accounts">Accounts</a></li>
-
+    
 
             {{#if isLoggedIn}}
+               <li><a href="/accounts">Accounts</a></li>
+               <li><a href="/dramas/drama-create">Create Drama</a></li>
+               <li><a href="/drama-recensions/drama-recension-create"> Create Drama Recension</a></li>
             {{/if}}
+
           </ul>
         </nav>
       </div>
@@ -47,8 +44,9 @@
 
 
     <footer>
-     {{#unless isLoggedIn}}<a href="/accounts/login"> Sing In </a>|<a href="/accounts/accounts-sign-up"> Sing Up </a>{{/unless}}
-      {{#if isLoggedIn}}<a href="/logout" class="btn btn-link">Logout</a>{{/if}}
+      {{#unless isLoggedIn}}<a href="/accounts/login"> Sing In </a>|<a href="/accounts/accounts-sign-up"> Sing Up
+      </a>{{/unless}}
+      {{#if isLoggedIn}}<a href="/logout">Sign Out</a>{{/if}}
       <p>By Bahja Faqid and Jenny Jansson</p>
 
     </footer>

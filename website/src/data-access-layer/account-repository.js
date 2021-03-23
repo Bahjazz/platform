@@ -48,26 +48,23 @@ possible errors: internalError, usernameTaken
 Success value: The id of the new account.
 */
 exports.createAccount = function(account,callback){
-	const query = `INSERT INTO accounts (username, password) VALUES (?, ?)`
-		const values = [account.username, account.password]
-		
+		const query = `INSERT INTO accounts (username, password) VALUES (?, ?)`
+		const values = [account.username, account.password ]
+		console.log(values)
 		db.query(query, values, function(error, results){
 			if(error){
-				console.log(error.sqlMessage)
-				//if(error.sqlMessage.includes("usernameUnique")){
-				//	callback(['usernameTaken'], null)
-				//}else{
+				console.log(error)
+				if(error.includes("usernameUnique")){
+					callback(['usernameTaken'], null)
+				}else{
 					callback(['internalError'], null)
-				//}
+				}
 			}else{
 				console.log(results)
 				callback([], results.insertId)
 			}
 		})
-		
 	
-        
-
-    }
+}
 	return exports
 }

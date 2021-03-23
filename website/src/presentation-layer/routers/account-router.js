@@ -1,4 +1,6 @@
 const express = require('express')
+const bcrypt = require('bcrypt')
+const USERNAME_LENGTH = 4
 
 module.exports = function ({ accountManager }) {
     const router = express.Router()
@@ -18,10 +20,12 @@ module.exports = function ({ accountManager }) {
                 response.redirect("/accounts")
             } else {
                 const errorTranslations = {
-                    usernameTooShort: "this username need to be at least 3 characters.",
+                    usernameTooShort: "this username need to be at least"+ USERNAME_LENGTH + " characters.",
                     usernameTooLong: "this username is too long",
                     internalError: "cant query out the request now",
-                    usernameTaken: "Username already in use."
+                    usernameTaken: "Username already in use.",
+                    passwordTooShort: "Password is empty try again",
+
                 }
                 const errorMessages = errors.map(e => errorTranslations[e])
 
@@ -37,39 +41,52 @@ module.exports = function ({ accountManager }) {
     })
     router.get("/login", function (request, response) {
         console.log("line 39")
-
-        const model = {
-            layout: false
-        }
-        response.render("login.hbs", model)
+        response.render('login.hbs')
     })
     router.post("/login", function (request, response) {
-        console.log("line 45")
+
+        console.log("line 44")
         const enteredUsername = request.body.username
         const enteredPassword = request.body.password
-        accountManager.getAccountByUsername(enteredUsername, function (errors, account) {
+        accountManager.getAccountByUsername(enteredUsername, function (error, account) {
+            if(error == 0){
+                bcrypt.compare(enteredPassword, account.password, function (err, result) {
+                    if (result) {
+                        request.session.isLoggedIn = true
+                        request.session.username = enteredUsername
+                        console.log("Userdata correct")
+                        response.redirect('/home')
+                    } else {
+                        console.log("Userdata wrong")
+                        request.session.isLoggedIn = false
+                        const model = {
+                            errors: error,
+                            account: account,
+                            layout: false
+                        }
 
-            const model = {
-                errors: errors,
-                account: account
+                        response.render('login.hbs', model)
+                    }
+
+                })
+             } else{
+                const errorTranslations = {
+                    internalError: "cant carry out the reqest now",
+                    invalidUsername:"username is wrong"
+                } 
+                console.log("error in acc")
             }
-            if (enteredPassword == account.password) {
-                request.session.isLoggedIn = true
-                response.render('home.hbs')
-
-            } else {
-                response.render("login.hbs", model)
-            }
-
         })
     })
-    router.get("logout", function(response,request){
+    router.post("/logout", function (request, response) {
         request.session.isLoggedIn = false
-        response.redirect("home.hbs")
+        response.redirect("/home")
+
     })
 
     router.get("/", function (request, response) {
-        console.log('CALLED')
+        if(request.session.isLoggedIn){
+
         accountManager.getAllAccounts(function (errors, accounts) {
             console.log('ACCOUNTS: ' + accounts)
             const model = {
@@ -79,8 +96,11 @@ module.exports = function ({ accountManager }) {
             response.render("accounts-list-all.hbs", model)
         })
         console.log('POST')
+    }
     })
     router.get('/:username', function (request, response) {
+        if(request.session.isLoggedIn){
+
         const username = request.params.username
         accountManager.getAccountByUsername(username, function (errors, account) {
 
@@ -90,7 +110,7 @@ module.exports = function ({ accountManager }) {
             }
             response.render("accounts-show-one.hbs", model)
         })
-
+    }
     })
     return router
 }

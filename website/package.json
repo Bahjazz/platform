@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
+    "mysql2": "2.2.5",
      "mysql": "^2.18.1",
      "nodemon":  "^2.0.7",
      "sequelize": "^6.5.0",
@@ -21,7 +22,14 @@
      "express-session": "^1.11.17",
      "connect-mongo": "^4.2.0",
      "mongodb": "^3.6.4",
-     "mongoose": "5.11.18"
+     "mongoose": "^5.11.18",
+     "bcrypt": "^5.0.1",
+     "redis": "^3.0.2",
+     "connect-redis": "5.1.0",
+     "cookie-parser": "1.4.5",
+     "nginx": "1.0.2"
+      
+
 
 
   }

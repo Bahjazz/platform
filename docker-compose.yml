@@ -1,5 +1,9 @@
 version: "3"
 services:
+   nginx:
+      build: ./frontend-spa
+      ports:
+        - "8080"
    website:
      build: ./website
      ports :
@@ -8,6 +12,13 @@ services:
      - "./website/src:/website/src"
      depends_on:
        - database
+       - redis
+     networks:
+       - net
+     environment:
+      DATABASE_HOST: database
+      REDIS_HOST: redis
+
    database:
       build: ./database
       ports:
@@ -15,3 +26,16 @@ services:
       environment: 
        - MYSQL_ROOT_PASSWORD=abc123
        - MYSQL_DATABASE=KdramaUnited
+      networks:
+       - net
+
+
+   redis:
+    image: "redis"
+    ports: 
+      - 6379:6379
+    networks:
+      - net
+
+networks:
+   net:

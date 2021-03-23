@@ -1,4 +1,6 @@
 const accountValidator = require('./account-validator')
+const bcrypt = require("bcrypt")
+const saltRounds = 10;
 
 module.exports = function({accountRepository}){
 
@@ -8,7 +10,7 @@ module.exports = function({accountRepository}){
 		accountRepository.getAllAccounts(callback)
 	}
 
-	exports.createAccount = function(account, callback){
+	exports.createAccount = async(account, callback) => {
 		// Validate the account.
 		const errors = accountValidator.getErrorsNewAccount(account)
 		
@@ -16,6 +18,7 @@ module.exports = function({accountRepository}){
 			callback(errors, null)
 			return
 		}
+		account.password = await bcrypt.hash(account.password,saltRounds)
 		accountRepository.createAccount(account, callback)
 		
 	}
