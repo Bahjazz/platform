@@ -1,6 +1,6 @@
 FROM node:15.6
 
-EXPOSE 8080
+EXPOSE 3000
 
 
 WORKDIR /website

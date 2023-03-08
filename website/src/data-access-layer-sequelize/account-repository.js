@@ -1,14 +1,13 @@
 const { Sequelize, DataTypes, UniqueConstraintError } = require('sequelize')
 const sequelize = new Sequelize('sqlite::memory:')
+
 const Account = sequelize.define('Account', {
   username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-		unique: true
+      type: DataTypes.STRING,
+      allowNull: false,
+	  unique: true
   },
-  password: {
-    type: DataTypes.STRING
-  }
+   password: Sequelize.TEXT
 }, {
 	timestamps: false
 })
@@ -30,11 +29,6 @@ module.exports = function(){
 			.catch(e => callback(["internalError"], null))
 	}
 
-	/*
-		Retrieves the account with the given username.
-		Possible errors: internalError
-		Success value: The fetched account, or null if no account has that username.
-	*/
 	exports.getAccountByUsername = function(username, callback){
 		Account.findOne({where: {username}, raw: true})
 			.then(account => callback([], account))

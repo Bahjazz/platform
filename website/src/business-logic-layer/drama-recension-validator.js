@@ -1,16 +1,19 @@
-const MIN_RECENSION_TITLE_LENGTH = 3
+const MIN_RECENSION_DISCRIPTION_LENGTH = 3
 
 
-exports.getErrorsForRecension = function (dramaRecension) {
+exports.getErrorsForNewDramaRecensions = function (dramaRecension) {
     const errors = []
-
-    if(!dramaRecension.hasOwnProperty("name")){
-        errors.push("Name is missing")
-    }
-    else if (dramaRecension.name.length < MIN_RECENSION_TITLE_LENGTH) {
-        errors.push("Name must be at least " + MIN_RECENSION_TITLE_LENGTH + "characters.")
-    }else if (dramaRecension.description.length < MIN_RECENSION_TITLE_LENGTH) {
-        errors.push("description must be at least " + MIN_RECENSION_TITLE_LENGTH + "characters.")
+    if(dramaRecension.dramaRecensionDescription.length < MIN_RECENSION_DISCRIPTION_LENGTH){
+        errors.push("discriptionTooShort")
     }
     return errors
+}
+
+exports.LeftRecension = function(userID, dramaRecensions){
+    for(let recension of dramaRecensions){
+        if(recension.accountID == userID){
+            return true
+        }
+    }
+    return false 
 }

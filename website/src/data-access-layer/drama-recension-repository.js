@@ -5,25 +5,20 @@ module.exports = function (){
     const exports = {}
 
    exports.getAllDramaRecension = function(callback){
-    const query = 'SELECT *  FROM dramaRecensions ORDER BY id DESC'
-    const values = []
-
+      const query = 'SELECT accounts.username, dramaRecensions. dramaRecensionID, dramaRecensions.dramaRecensionDescription, dramaRecensions.dramaID, dramaRecensions.accountID FROM  dramaRecensions JOIN accounts ON accounts.accountsID =  dramaRecensions.accountID ORDER BY dramaRecensionID'
+      const values = []
        db.query(query,values,function(error,dramaRecensions){
-           console.log('QUERY:'+ dramaRecensions )
            if(error){
-            callback(['internalError'],null)
-
+            callback(['internalError'], null)
            }else{
-           callback([],dramaRecensions)
+              callback([], dramaRecensions)
            }
        })
    }
-   exports.getDramaRecensionById = function(id, callback){
-       const query =  "SELECT * FROM dramaRecensions WHERE id = ? LIMIT 1"
-       const values = [id]
+   exports.getDramaRecensionById = function(dramaRecensionID, callback){
+       const query = 'SELECT drama.dramaName, drama.dramaDescription, dramaRecensions.dramaRecensionID, dramaRecensions.dramaRecensionDescription, dramaRecensions.dramaID,dramaRecensions.accountID FROM dramaRecensions JOIN dramas ON dramas.dramaID = dramaRecensions.dramaID WHERE dramaRecensionID = ? LIMIT 1'
+       const values = [dramaRecensionID]
        db.query(query,values,function(error,dramaRecensions){
-           console.log(error)
-           console.log(dramaRecensions)
            if(error){
                callback(['internalError'], null)
            }else{
@@ -33,18 +28,28 @@ module.exports = function (){
    }
 
    exports.createDramaRecension = function(dramaRecension,callback){
-    const query = `INSERT INTO dramaRecensions (name, description) VALUES (?, ?)` 
-    const values = [dramaRecension.name, dramaRecension.description]
+    const query = `INSERT INTO dramaRecensions (dramaRecensionDescription,dramaID,accountID) VALUES (?,?,?)` 
+    const values = [dramaRecension.dramaRecensionDescription,, dramaRecension.dramaID, dramaRecension.userID]
     db.query(query, values, function(error,results){
         if(error){
-            console.log(error.sqlMessage)
-                 callback(['internalError'],null)
-
+             callback(['internalError'], null)
         }else{
-         console.log(results)
-         callback([], results.insertId)
+           callback([], results.insertId)
         }
     })
 }
+
+exports.getDramaByDramaRecensions = function(dramaId, callback){
+    const query = 'SELECT accounts.username,dramaRecensions.dramaRecensionID,dramaRecensions.dramaRecensionDescription,dramaRecensions.dramaID, dramaRecensions.accountID FROM dramaRecensions JOIN accounts ON accounts.accountID = dramaRecensions.accountID WHERE dramaID = ? ORDER BY dramaRecensionID'
+    const values = [dramaId]
+    db.query(query,values, function(error, dramaRecensions){
+        if(error){
+            callback(['internalError'], null)
+        }else{
+            callback([],dramaRecensions)
+        }
+    })
+}
+
    return exports
 }
