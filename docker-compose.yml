@@ -10,7 +10,7 @@ services:
        - database
        - redis
    database:
-      build:  ./database
+      build: ./database
       environment: 
        - MYSQL_ROOT_PASSWORD=abc123
        - MYSQL_DATABASE=KdramaUnited

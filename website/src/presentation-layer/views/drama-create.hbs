@@ -1,38 +1,26 @@
-<div class="content">
-	<h2>Comment the drama below. </h2>
-</div>
-
 {{#if errors.length}}
+<div class="error">
 <p>Fix the errors for drama </p>
 <ul>
 	{{#each errors}}
 	<li>{{this}}</li>
 	{{/each}}
-</ul>
+  </ul>
+</div>
 {{/if}}
-<form action="" method="POST">
+{{#if authError.length}}
+{{#each authError}}
+<li>{{this}}</li>
+{{/each}}
+{{/if}}
+<br>
 
-	<div>
-		<div class="form-group">
-			<label class="form-label" for="input-example-1">Name</label>
-			<input type="text" name="name" value="{{name}}" placeholder="Name">
-		</div>
+<form action="" method="POST" class="form" id="post">
+<input type="hidden" name="_csrf" value="{{csrfToken}}">
 
-		<div class="form-group">
-			<label class="form-label" for="input-example-3">Description</label>
-			<textarea class="input-lg" name="description" value="{{description}}" placeholder="Textarea" rows="3"></textarea>
-		</div>
-
-	  <button class="btn btn-primary input-group-btn">Submit</button>	
+<label class="form-label" for="input-example-1">Name</label>
+<input type="text" name="name" value="{{dramaName}}" placeholder="Name">
+<label class="form-label" for="input-example-3">Description</label>
+<textarea class="form-input" id="input-example-3"  name="description" value="{{dramaDescription}}" placeholder="content" rows="6"></textarea>
+<input type="submit"class="btn btn-primary input-group-btn" value="create Drama">	
 </form>
-<!---
-	<div>
-		Name: <input type="text" name="name" value="{{name}}">
-	</div>
-	
-	<div>
-		Description: <input type="text" name="description" value="{{description}}">
-	</div>
-     <input type="submit" name="" value="Create">
-</form>
--->

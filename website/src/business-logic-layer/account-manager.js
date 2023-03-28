@@ -74,7 +74,7 @@ module.exports = function({accountRepository}){
 			})
 		}		
 	}
-/*
+
 	exports.deleteAccountById = function(authorization, callback){
 		if(authorization && authorization.isLoggedIn){
 			accountRepository.deleteAccountById(authorization.userID, callback)
@@ -83,7 +83,7 @@ module.exports = function({accountRepository}){
 		}
 
 	}
-*/
+
 	exports.getAccountByUsername = function(authorization, callback){
 		if(authorization && authorization.isLoggedIn){
 			accountRepository.getAccountByUsername(authorization.username, callback)
@@ -91,7 +91,7 @@ module.exports = function({accountRepository}){
 			callback(['YouNeedToLogIn'])
 		}
 	}
-/*
+
 	exports.updateAccount = function(authorization, account, callback){
 		const errors = accountValidator.getUpdateForAccountErrors(account)
 		if(authorization && authorization.isLoggedIn){
@@ -106,7 +106,7 @@ module.exports = function({accountRepository}){
 			callback(['YouNeedToLogIn'])		
 		}     
 	}
-*/
+
 	
 	return exports
 

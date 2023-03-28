@@ -8,37 +8,15 @@
 </div>
 
 {{#if errors.length}}
-<p>Fix the errors</p>
 <ul>
 	{{#each errors}}
-		<li>{{this}}</li>
+	<li>{{this}}</li>
 	{{/each}}
 </ul>
 {{/if}}
-<!--
-<div class="sing-up-box">
 <form action="" method="POST">
-	
-	<div>
-		Username: <input type="text" name="username" value="{{username}}">
-	</div>
-	
-	<div>
-		Password: <input type="password" name="password" value="{{password}}">
-	</div>
-	
-	<input type="submit" value="Sign up">
-	
-</form>
-   <input type="text" name="username"placeholder="username" value="{{username}}">
-      <input type="password" name="password"placeholder="password" value="{{password}}">
-
-
-</div>
- -->
-
-<form action="" method="POST">
-
+ <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <br>
 <form class="login-box" method="POST">
   <div>
 	  Username: <input type="text" name="username" value="{{username}}">

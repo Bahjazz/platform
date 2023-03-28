@@ -7,24 +7,13 @@
 			<li>{{this}}</li>
 		{{/each}}
 	</ul>
-{{else}}
-	
+   {{else}}
 	{{#if dramaRecension}}
-	<div class="recension-box">
-		<dl>
-			
-			<h4>Id:</h4>
-			<h4> {{dramaRecension.id}}</h4>
-			
-			<h2>Name: {{dramaRecension.name}}</h2>
-			<h2>Description: {{dramaRecension.description}}</h2>
-
-			
-		</dl>
-		</div>
+    <ul>
+		<li>Description: {{dramaRecension.description}}</li>
+	</ul>
 	{{else}}
-		<p>No, that drama recension doesn't exist.</p>
-	{{/if}}
-	
+		<p>No,  drama recensions exist.</p>
+	{{/if}}	
 {{/if}}
 </div>

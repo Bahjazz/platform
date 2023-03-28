@@ -23,15 +23,12 @@
         <nav>
           <ul>
             <li><a href="/home">Top Drama</a></li>
-            <li><a href="/dramas">All Dramas</a></li>
-            
-            <li><a href="/drama-recensions"> All Drama Recension</a></li>
-    
-
-            {{#if isLoggedIn}}
+            <li><a href="/dramas">Dramas</a></li>  
+            <li> <a href="/contact">Contact</a></li>
+          {{#if isLoggedIn}}
                <li><a href="/accounts">Accounts</a></li>
-               <li><a href="/dramas/drama-create">Create Drama</a></li>
-               <li><a href="/drama-recensions/drama-recension-create"> Create Drama Recension</a></li>
+               <li><a href="/accounts/:{{this.username}}">My Account</a></li>
+               <li><a href="/dramas/drama-create">Create Drama</a></li>   
             {{/if}}
 
           </ul>
@@ -42,11 +39,15 @@
       {{{body}}}
     </main>
 
-
     <footer>
       {{#unless isLoggedIn}}<a href="/accounts/login"> Sing In </a>|<a href="/accounts/accounts-sign-up"> Sing Up
       </a>{{/unless}}
-      {{#if isLoggedIn}}<a href="/logout">Sign Out</a>{{/if}}
+      {{#if isLoggedIn}}
+       <form method="POST" action="/accounts/logout">
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <a href="/logout">Sign Out</a>       
+       </form>
+   {{/if}}
       <p>By Bahja Faqid and Jenny Jansson</p>
 
     </footer>

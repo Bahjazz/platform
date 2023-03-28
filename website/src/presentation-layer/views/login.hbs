@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="/public/css/login.css">
-    </head>
-    	{{#if errors.length}}
-	<p>Oh no, something went wrong:</p>
+</head>
+<body>
+   <form method="get" action="/home">
+   <button class="btn-group" type="submit">Home</button>
+</form>
+<div class="login-box"></div>
+	{{#if errors.length}}
+	<p>Oh no, something went wrong, login error:</p>
 	<ul>
 		{{#each errors}}
 		<li>{{this}}</li>
 		{{/each}}
 	</ul>
    {{/if}}
-<form method="get" action="/home">
-   <button class="btn-group" type="submit">Home</button>
-</form>
+
+
+
 <form class="login-box" action="" method="POST">
+   <input type="hidden" name="_csrf" value="{{csrfToken}}">
    <h1>Login</h1>
    <input type="hidden" name="" value="">
    <input type="text" name="username"placeholder="username" value="{{username}}">
    <input type="password" name="password"placeholder="password" value="{{password}}">
    <input type="submit" value="Login">
+   <h4>OR</h4>
+   <a href="/accounts/accounts-sign-up" class="btn">Sign Up</a>
    {{#if loginError}}<p>Entered username or password is wrong</p>{{/if}}
+
+</body>
 </form>
 </html>

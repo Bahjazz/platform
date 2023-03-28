@@ -1,6 +1,8 @@
 const express = require('express')
-const bcrypt = require('bcrypt')
-const USERNAME_LENGTH = 4
+const req = require('express/lib/request')
+const USERNAME_MAX_LENGTH = 20
+const USERNAME_MIN_LENGTH = 4
+const PASSWORD_MIN_LENGTH = 4
 
 module.exports = function ({ accountManager }) {
     const router = express.Router()

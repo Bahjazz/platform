@@ -14,6 +14,7 @@ const Drama = sequelize.define('Drama', {
     timestamps: false
 })
 sequelize.sync({ force: true })
+
 module.exports = function () {
     const exports = {}
 
@@ -24,36 +25,31 @@ module.exports = function () {
     }
 
     exports.getDramaById = function (id, callback) {
-        Drama.findOne({ where: { id }, raw: true })
+        Drama.findOne({ where: {dramaID: id }, raw: true })
             .then(drama => callback([], drama))
             .catch(e => callback(["internalError"], null))
     }
     exports.createDrama = function (drama, callback) {
         Drama.create(drama)
-            .then(a => callback([], a.id))
-            .catch(e => {
-                if (e instanceof UniqueConstraintError) {
-                    callback(["name cant be empty"], null)
-                } else {
-                    callback(["internalError"], null)
-                }
-            })
+            .then(drama => callback([], drama.id))
+            .catch(e => callback(["internalError"], null))
+         
     }
-    exports.updateDrama = function (account, callback) {
-        Account.update({
-            username: account.username
-        }, {
-            where: { username: account.username }
-        }).then(callback([]))
-            .catch(e => callback(["internalError"]))
-    }
-    exports.deleteTrip = function (account, callback) {
-        Account.destroy({ where: { username: account.username }
-            .then()
-            .catch(e => callback(['internalError']
-            ))
-    })
+    exports.deleteDramaById = function (drama, callback) {
+        Drama.destroy({ where: { id: drama.dramaID }
+            .then(drama => callback([], null))
+            .catch(e => callback(["internalError"], null))
+        })
+ }
 
+    exports.updateDrama = function (drama, callback) {
+        Drama.update({
+            name: drama.name,
+            description: drama.description
+        }, {
+            where: { id: drama.dramaID }
+        }).then(callback([]))
+        .catch(e => callback(["internalError"]))
     }
 
     return exports

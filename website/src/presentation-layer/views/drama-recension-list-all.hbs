@@ -1,5 +1,5 @@
 <div class="content">
-	<h1>All drama recensions</h1>
+	<h1>Drama recensions</h1>
 	{{#if errors.length}}
 	<p>Oh no, something went wrong:</p>
 	<ul>
@@ -10,14 +10,17 @@
 	{{else}}
 
 	{{#if dramaRecensions.length}}
-	<ul>
-		{{#each dramaRecensions}}
-		<li><a href="/drama-recensions/{{id}}">{{name}}</a></li>
-		{{/each}}
-	</ul>
+	{{#each dramaRecensions}}
+	<div class=".cont" id="recensions">
+		<p>{{DramaRecensionDescription}}</p>
+	</div>
+	{{/each}}
 	{{else}}
 	<p>No drama recensions exist yet.</p>
 	{{/if}}
 
 	{{/if}}
 </div>
+<p><a href="/drama-recensions/{{dramaRecensions.id}}">Shoe drama Recension</a></p>
+		
+	

@@ -6,7 +6,7 @@
 </div>
 
 <div class="content">
-<h1>drama </h1>
+<h1>Drama </h1>
 {{#if errors.length}}
 	<p>Oh no, something went wrong:</p>
 	<ul>
@@ -15,23 +15,35 @@
 		{{/each}}
 	</ul>
 {{else}}
-	
 	{{#if drama}}
-	<div class="recension-box">
-		<dl>
-			
-			<h4>Id:</h4>
-			<h4> {{drama.id}}</h4>
-			
-			<h2>Name: {{drama.name}}</h2>
-			<h2>Description: {{drama.description}}</h2>
-
-			
-		</dl>
-		</div>
+	<ul>
+		<li>Dramas : {{drama.dramaID}}</li>
+		<li>User: <a href="/accounts/{{drama.username}}">{{drama.username}}</a></li>
+		<li>Description: {{drama.dramaDescription}}</li>
+		<li>Name: {{drama.dramaName}}</li>
+	</ul>
+    {{#if admin}}
+	<a href="/dramas/update/{{drama.dramaID}}"><button> update Drama</button></a> <br>
+	<a href="/dramas/delete/{{drama.dramaID}}"><button> Delete Drama</button></a> <br>
+	<h5>Your drama</h5>
 	{{else}}
+	<a href="/dramaRecensions/create"><button> make a dramaRecension</button></a>
+
+	{{/if}}
+	<h4>DramaRecension:</h4>
+	{{#each dramaRecensions}}
+	<div class="drama-recension">
+          <a href="/dramaRecensions/{{dramaRecensionID}}">
+		     <ul>
+				 <li>Made Recension By: {{this.username}}</li>
+				 <li>Description:{{this.dramaRecensionDescription}}
+				 </li>
+			 </ul>		  
+		  </a>
+	</div>
+	{{/each}}
+{{else}}
 		<p>No, that drama doesn't exist.</p>
 	{{/if}}
-	
 {{/if}}
 </div>

@@ -1,5 +1,4 @@
 const express = require('express')
-const app = require('../app')
 
 module.exports = function () {
 
@@ -8,19 +7,12 @@ module.exports = function () {
   router.get("/home", function (request, response) {
     response.render("home.hbs")
   })
- 
+  router.get('/', function (request, response) {
+    response.redirect("/dramas")
+  })
   router.get("/contact", function (request, response) {
     response.render("contact.hbs")
   })
 
-  router.get("/drama-recension", function (request, response) {
-    response.render("drama-recension-create.hbs")
-  })
-  
-  
-  router.get("/drama", function (request, response) {
-    response.render("drama-create.hbs")
-  })
-  
   return router
 }

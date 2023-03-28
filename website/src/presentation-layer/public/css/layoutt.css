@@ -11,6 +11,9 @@ body {
   margin: auto;
   overflow: hidden;
 }
+.error{
+  color: red;
+}
 
 .recension-box{
   margin-left: 20px;
@@ -18,7 +21,9 @@ body {
 
 }
 
-
+#post{
+  width: 70%;
+}
 .my-post{
     width: 30%;
     height: auto;
@@ -251,6 +256,18 @@ header a:hover {
   color: black;
   font-size: 15px;
 }
+
+#form{
+  width: 600px;
+  background-color: rgba(211, 211, 211, 0.927);
+  padding: 48px;
+  float: right;
+  display: inline;
+  width: 400px;
+  box-shadow: 0px 0px 6px 6px rgb(159, 159, 159);
+  margin-right: 55px;
+}
+
 .contact-form .contact-box .input {
   font-size: 15px;
   padding: 3px 0;
@@ -338,4 +355,31 @@ footer {
   #background-info h1 {
     margin-top: 30px;
   }
+}
+.cont{
+  width: 60%;
+  height: auto;
+  background-color: #9b9090;
+  padding: 11px;
+  border-radius: 5px;
+  margin-bottom: 180px;
+  box-shadow: 2px 2px rgb(211, 211, 211);
+  overflow: hidden;
+}
+.drama-recension{
+    width: 60%;
+    height: auto;
+    background-color: #9b9090;
+    padding: 11px;
+    border-radius: 5px;
+    margin-bottom: 180px;
+    box-shadow: 2px 2px rgb(211, 211, 211);
+    overflow: hidden;
+  
+}
+#recensions{
+  background-color: rgb(153, 255, 0);
+}
+#errorMessages{
+  background-color: red;
 }

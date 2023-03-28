@@ -1,9 +1,10 @@
+const { deserializeStream } = require('bson')
 const { Sequelize, DataTypes, UniqueConstraintError } = require('sequelize')
 const sequelize = new Sequelize('sqlite::memory:')
 
 const Account = sequelize.define('Account', {
   username: {
-      type: DataTypes.STRING,
+      type: Sequelize.TEXT,
       allowNull: false,
 	  unique: true
   },
@@ -17,12 +18,7 @@ sequelize.sync({force: true})
 module.exports = function(){
 
 	const exports = {}
-		
-	/*
-		Retrieves all accounts ordered by username.
-		Possible errors: internalError
-		Success value: The fetched accounts in an array.
-	*/
+	
 	exports.getAllAccounts = function(callback){
 		Account.findAll({raw: true})
 			.then(accounts => callback([], accounts))
@@ -34,27 +30,34 @@ module.exports = function(){
 			.then(account => callback([], account))
 			.catch(e => callback(["internalError"], null))
 	}
-
-	/*
-		Creates a new account.
-		account: {username: "The username", password: "The password"}
-		Possible errors: internalError, usernameTaken
-		Success value: The id of the new account.
-	*/
 	exports.createAccount = function(account, callback){
 		
 		Account.create(account)
-			.then(a => callback([], a.id))
+			.then(account => callback([], account.id))
 			.catch(e => {
 				if(e instanceof UniqueConstraintError){
 					callback(['usernameTaken'], null)
 				}else{
-					callback(['internalError'], null)
+					callback(["internalError"], null)
 				}
 			})
 		
 	}
-	
+	exports.deleteAccountById = function (id, callback){
+		Drama.destroy({
+			where:{accountID: id}
+			.then()
+			.catch(e => callback(["internalError"]))
+		})
+	}
+	exports.updateAccount = function(account, callback){
+		Account.update({
+			username:account.username
+		},{
+			where:{id: account.accountID}
+		}).then(callback([]))
+		.catch(e => callback(["internalError"]))
+	}
 	return exports
 
 }

@@ -9,15 +9,14 @@
 	</ul>
 	{{else}}
 
-	{{#if dramas.length}}
-	<ul>
-		{{#each dramas}}
-		<li><a href="/dramas/{{id}}">{{name}}</a></li>
-		{{/each}}
-	</ul>
-	{{else}}
+	{{#if dramas.length}}	
+	  {{#each dramas}}
+	   <div class="cont">
+		<a href="/dramas/{{dramaID}}"><Button>Click for more</Button></a>
+	 </div>
+	{{/each}}
+ {{else}}
 	<p>No drama exist yet.</p>
 	{{/if}}
-
-	{{/if}}
+{{/if}}
 </div>
