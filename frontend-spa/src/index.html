@@ -1,101 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>SPA</title>
-	
-	<style>
-		
-		/*** TODO: Put CSS code in separate file. ***/
-		
-		/* Code for only showing the page with the class "current-page". */
-		main > .page{
-			display: none;
-		}
-		
-		main > .page.current-page{
-			display: block;
-		}
-		
-		/* Code for hiding elements depending on if the user is logged in or not. */
-		.is-logged-in .if-is-logged-out{
-			display: none;
-		}
-		
-		.is-logged-out .if-is-logged-in{
-			display: none;
-		}
-		
-	</style>
-	
-	
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./spa.css">
+	<script src = "./index.js"></script>
+	<title>Kdrama</title>
+
 </head>
-<body class="is-logged-out">
-	
-	<header>
-		My Site
-	</header>
-	
-	<nav>
+	<body class="is-logged-out">
 		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/all-account">account</a></li>
-			<li class="if-is-logged-in"><a href="/create-human">Create account</a></li>
-			<li class="if-is-logged-out"><a href="/login">Login</a></li>
-		</ul>
-	</nav>
-	
-	<main>
-		
-		<div class="page" id="home-page">
-			<h1>Home</h1>
-			<p>Welcome to this site!</p>
-			<p>Go to <a href="/about">About page</a>.</p>
-		</div>
-		
-		<div class="page" id="about-page">
-			<h1>About</h1>
-			<p>The about page...</p>
-			<p>Read about <a href="http://nintendo.se">Nintendo</a>.</p>
-		</div>
-		
-		<div class="page" id="create-human-page">
-			<h1>Create</h1>
-			<form action="" id="create-human-form">
+				<li><a href="/">Home</a></li>
+				<li><a href="/dramas">Dramas</a></li>
+				<li class="if-is-logged-in"><a href="/create-drama">Create Drama</a></li>
+				<li><a class="if-is-logged-out"><a href="/login">Sign In</a></li>
+				<li><a class="if-is-logged-out"><a href="/create-account">Sign Up</a></li>
+                   </ul>
+				   <div id = click-signOut>
+					   <button class="if-is-logged-in" type="click" name="logout-btn">SignOut</button>
+				   </div>
+
+		<main>
+
+			<div class="page" id="home-page">
+				<h1>Home</h1>
+				<p>Welcome to kdramaUnited!</p>
+				<p>Go to <a href="/dramas">drama page</a>.</p>
+			</div>
+
+			<div class="page" id="drama-page">
+				<h1>Drama</h1>
+				<p>The Drama page...</p>
+			</div>
+
+			<div class="page" id="SignUp-page">
+				<h1>Sign Up</h1>
+				<form action = "" id="SignUp-Form" name="create-accounts"></div>
 				<div>
-					Name: <input type="text" id="name">
+						<label>username:</label>
+						<input type="text" id="username" placeholder="Username" required>
+					</div>
+                <div> 
+					<label>Password: </label> 
+					<input type="password" id="password" placeholder="password" required>
+				</div>  
+			
+				 <button type="submit" value="create-accounts">Sign Up</button>
+				</form>
+			</div>
+
+				<div class="page" id="login-page">
+					<h1>Sign In</h1>
+					<form action="" id="login-form">
+						<div>
+							Username: <input type="text" id="username-signIn">
+						</div>
+						<div>
+							Password: <input type="password" id="password-signIn">
+						</div>
+						<input type="submit" value="sign in">
+					</form>
 				</div>
-				<div>
-					description: <input type="number" id="age">
-				</div>
-				<input type="submit" value="Create">
-			</form>
-		</div>
-		
-		<div class="page" id="login-page">
-			<h1>Login</h1>
-			<form action="" id="login-form">
-				<div>
-					Username: <input type="text" id="username">
-				</div>
-				<div>
-					Password: <input type="password" id="password">
-				</div>
-				<input type="submit" value="Login">
-			</form>
-		</div>
-		
-		<div class="page" id="all-humans-page"></div>
-		
-		<div class="page" id="human-page"></div>
-		
-		<div class="page" id="not-found-page">
-			<h1>Not Found</h1>
-		</div>
-		
-	</main>
-	
-</body>
+			</div>
+
+
+			<div class="page" id="create-drama-page">
+				<form action="" id="create-drama-form">
+					<div>
+						Name: <input type="name" id="name">
+					</div>
+					<div>
+						description: <textarea type="text" id="description" rows = "4" cols ="60"></textarea>
+					</div>
+					<div>
+					<input type="Submit" id="create-btn" value="CREATE">
+				    </div>
+				</form>
+			</div>
+
+			<div class="page" id="update-drama-page">
+				<form action="" id="update-drama-form">
+					<div>
+						New Name: <input type="name" id="newName">
+					</div>
+					<div>
+						New Description: <textarea type="text" id="newDescription" rows = "4" cols ="60"></textarea>
+					</div>
+
+					<div>
+					<input type="hidden" id="authId" value="UPDATE">
+				    </div>
+				</form>
+			</div>
+
+			<div class="page" id="all-dramas-page"></div>
+
+			<div class="page" id="drama-page"></div>
+
+			<div class="page" id="not-found-page">
+				<h1>Not Found</h1>
+			</div>
+
+		</main>
+
+	</body>
+
 </html>

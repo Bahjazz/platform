@@ -22,15 +22,10 @@
 		<li>Description: {{drama.dramaDescription}}</li>
 		<li>Name: {{drama.dramaName}}</li>
 	</ul>
-    {{#if admin}}
-	<a href="/dramas/update/{{drama.dramaID}}"><button> update Drama</button></a> <br>
-	<a href="/dramas/delete/{{drama.dramaID}}"><button> Delete Drama</button></a> <br>
-	<h5>Your drama</h5>
 	{{else}}
 	<a href="/dramaRecensions/drama-recension-create"><button> make a dramaRecension</button></a>
-
 	{{/if}}
-	<h4>DramaRecension:</h4>
+	<h4>DramaRecensions:</h4>
 	{{#each dramaRecensions}}
 	<div class="drama-recension">
           <a href="/dramaRecensions/{{dramaRecensionID}}">

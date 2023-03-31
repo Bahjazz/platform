@@ -44,7 +44,8 @@
       {{#if isLoggedIn}}
        <form method="POST" action="/accounts/logout">
           <input type="hidden" name="_csrf" value="{{csrfToken}}">
-         <a href="/logout">Sign Out</a>       
+          <input type="submit" value="Sign Out" class="btn btn-primary">
+               
        </form>
    {{/if}}
       <p>By Bahja Faqid and Jenny Jansson</p>

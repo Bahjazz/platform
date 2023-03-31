@@ -94,10 +94,11 @@ module.exports = function ({ accountManager }) {
     })
 
     router.post("/logout", function (request, response) {
+        console.log('yrssss is not working line 97 account router');
         request.session.isLoggedIn = false
         request.session.username = null
         request.session.userID = null
-        response.redirect("/dramas")
+        response.redirect("/home")
 
     })
 

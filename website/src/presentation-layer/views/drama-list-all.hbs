@@ -15,18 +15,10 @@
 	<p>posted By: {{dramaName}}</p>
      <li> {{dramaID}}. {{dramaName}} </li> 	 
 	 <li>{{dramaDescription}}</li>	
-
-	<br>
-	<form action="" method="POST" class="form" id = "post">
-	 <input type="hidden" name="_csrf" value="{{csrfToken}}"> 
-	 <label class="form-label" for="input-example-3">  Make a drama recension:</label>
-	<textarea class="form-input" id="input-example-3" placeholder="Content" name="description" rows="5"  value="{{dramaRecensionDescription}}"></textarea>	 
-   <input type="submit" class="btn btn-primary input-group-btn" value ="Create DramaRecension">
-	</form>
-					</form>
+     <a href="/Dramas/{{DramaID}}"><button> click for more </button></a>
+				
 	 </div>
 	{{/each}}
-	if
  {{else}}
 	<p>No drama exist yet.</p>
 	{{/if}}
