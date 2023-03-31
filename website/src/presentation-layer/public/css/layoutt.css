@@ -357,13 +357,11 @@ footer {
   }
 }
 .cont{
-  width: 60%;
+  width: 100%;
   height: auto;
-  background-color: #9b9090;
-  padding: 11px;
-  border-radius: 5px;
-  margin-bottom: 180px;
-  box-shadow: 2px 2px rgb(211, 211, 211);
+  font-weight: 700;
+  border-radius: black;
+  margin-bottom: 90px;
   overflow: hidden;
 }
 .drama-recension{

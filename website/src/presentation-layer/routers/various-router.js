@@ -10,9 +10,7 @@ module.exports = function () {
   router.get('/', function (request, response) {
     response.redirect("/dramas")
   })
-  router.get("/contact", function (request, response) {
-    response.render("contact.hbs")
-  })
+  
 
   return router
 }

@@ -77,8 +77,7 @@ module.exports = function ({ dramaRecensionRepository, dramaRepository }) {
                      callback([], dramaRecensionData)
                  }
              })
-        }
-        else{
+        }else{
             callback(['YouNeedToLogIn'], null)
         }
        

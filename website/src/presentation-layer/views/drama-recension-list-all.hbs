@@ -8,10 +8,11 @@
 		{{/each}}
 	</ul>
 	{{else}}
-
+     <a href="/drama-recension-create">Post a DramaRecension</a>
 	{{#if dramaRecensions.length}}
 	{{#each dramaRecensions}}
 	<div class=".cont" id="recensions">
+		<p><a href="/drama-recensions/{{dramaRecensionID}}"></a>
 		<p>{{DramaRecensionDescription}}</p>
 	</div>
 	{{/each}}
@@ -21,6 +22,5 @@
 
 	{{/if}}
 </div>
-<p><a href="/drama-recensions/{{dramaRecensions.id}}">Shoe drama Recension</a></p>
 		
 	
