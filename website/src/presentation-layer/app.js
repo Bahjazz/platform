@@ -53,7 +53,7 @@ module.exports = function ({variousRouter,accountRouter, dramaRecensionRouter,dr
 
   app.use('/', variousRouter)
   app.use('/accounts', accountRouter)
-  app.use('/drama-recensions',dramaRecensionRouter )
+  app.use('/dramaRecensions',dramaRecensionRouter )
   app.use('/dramas', dramaRouter)
   
   return app

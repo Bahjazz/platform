@@ -1,12 +1,6 @@
-<div class="about-Container">
-    <p>
-        Welcome! This is a place for discussions and news about your favorite Korean drama series (current and past), the actors and actresses, drama reviews, official soundtracks, award shows, and more. Be sure to check out our sidebar for helpful info and resources!.
-    </p>
-
-</div>
-
 <div class="content">
 <h1>Drama </h1>
+
 {{#if errors.length}}
 	<p>Oh no, something went wrong:</p>
 	<ul>
@@ -23,9 +17,9 @@
 		<li>Name: {{drama.dramaName}}</li>
 	</ul>
 	{{else}}
-	<a href="/dramaRecensions/drama-recension-create"><button> make a dramaRecension</button></a>
+	<a href="/dramaRecensions/create"><button> make a dramaRecension</button></a>
 	{{/if}}
-	<h4>DramaRecensions:</h4>
+	<h4>DramaRecensions: </h4>
 	{{#each dramaRecensions}}
 	<div class="drama-recension">
           <a href="/dramaRecensions/{{dramaRecensionID}}">
@@ -35,9 +29,9 @@
 				 </li>
 			 </ul>		  
 		  </a>
-	</div>
+	 </div>
 	{{/each}}
-{{else}}
+   {{else}}
 		<p>No, that drama doesn't exist.</p>
 	{{/if}}
 {{/if}}

@@ -1,5 +1,5 @@
 <div class="content">
-	<h1>Drama recensions</h1>
+	<h1>DramaRecensions</h1>
 	{{#if errors.length}}
 	<p>Oh no, something went wrong:</p>
 	<ul>
@@ -8,19 +8,17 @@
 		{{/each}}
 	</ul>
 	{{else}}
-     <a href="/drama-recension-create">Post a DramaRecension</a>
 	{{#if dramaRecensions.length}}
 	{{#each dramaRecensions}}
 	<div class=".cont" id="recensions">
-		<p><a href="/drama-recensions/{{dramaRecensionID}}"></a>
-		<p>{{DramaRecensionDescription}}</p>
+		<h3>{{dramaName}} {{dramaDescription}}</h3>
+		<p> {{DramaRecensionDescription}}</p>
 	</div>
 	{{/each}}
 	{{else}}
 	<p>No drama recensions exist yet.</p>
 	{{/if}}
-
 	{{/if}}
 </div>
-		
+<p><a href="/dramaRecensions/{{dramaRecensions.id}}">Show drama-recension</a></p>
 	

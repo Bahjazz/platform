@@ -10,11 +10,12 @@
    {{else}}
 	{{#if dramaRecension}}
     <ul>
-		<li>Drama By{{dramaRecensions.username}}. {{dramaRecensions.dramaName}}</li>
+		<li>Drama By{{dramaRecensions.dramaName}}. {{dramaRecensions.dramaDescription}}</li>
 		<li>Description: {{dramaRecension.dramaRecensionDescription}}</li>
 	</ul>
 	{{else}}
-		<p>No,  drama recensions exist.</p>
+	<p>No,  drama recensions exist.</p>
 	{{/if}}	
-{{/if}}
+    {{/if}}
+	
 </div>

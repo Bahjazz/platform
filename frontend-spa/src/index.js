@@ -2,7 +2,7 @@
     // Especially, writing a library/SDK to only handle the communication with
     // the backend is a very good idea.
     
-    const BACKEND_URI = "http://localhost:8080/"
+    const BACKEND_URI = "http://localhost:8080/api"
     
     // TODO: Want to remember the access token across page reloads?
     // You could for example store it in local storage, although that
