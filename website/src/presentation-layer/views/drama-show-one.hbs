@@ -9,30 +9,34 @@
 		{{/each}}
 	</ul>
 {{else}}
-	{{#if drama}}
-	<ul>
-		<li>Dramas : {{drama.dramaID}}</li>
-		<li>User: <a href="/accounts/{{drama.username}}">{{drama.username}}</a></li>
-		<li>Description: {{drama.dramaDescription}}</li>
-		<li>Name: {{drama.dramaName}}</li>
-	</ul>
+	{{#if isDrama}}
+		<ul>
+			<li>Drama ID : {{drama.dramaID}}</li>
+			<li>Account: <a href="/accounts/{{drama.username}}">{{drama.username}}</a></li>
+			<li>Description: {{drama.dramaDescription}}</li>
+			<li>Name: {{drama.dramaName}}</li>
+		</ul>
+		
+    	<h4>DramaRecensions: </h4>
+		{{#each dramaRecensions}}
+			<div class="cont">
+				<a href="/dramaRecensions/{{dramaRecensionID}}">
+					<ul>
+						<li>Made Recension By: {{this.username}}</li>
+						<li>Description:{{this.dramaRecensionDescription}}
+						</li>
+					</ul>		  
+				</a>
+			</div>
+		{{/each}}
+		
+		<a href="/dramaRecensions/create"> Create Recension</a>
 	{{else}}
-	<a href="/dramaRecensions/create"><button> make a dramaRecension</button></a>
+		<p>No dramas to show</p>
+		<!---<a href="/drama/create"><button> create drama</button></a>
+		--->
+		
 	{{/if}}
-	<h4>DramaRecensions: </h4>
-	{{#each dramaRecensions}}
-	<div class="drama-recension">
-          <a href="/dramaRecensions/{{dramaRecensionID}}">
-		     <ul>
-				 <li>Made Recension By: {{this.username}}</li>
-				 <li>Description:{{this.dramaRecensionDescription}}
-				 </li>
-			 </ul>		  
-		  </a>
-	 </div>
-	{{/each}}
-   {{else}}
-		<p>No, that drama doesn't exist.</p>
-	{{/if}}
+	
 {{/if}}
 </div>

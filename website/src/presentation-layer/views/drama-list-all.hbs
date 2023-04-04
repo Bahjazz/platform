@@ -1,23 +1,23 @@
 <div class="content">
 	{{#if errors.length}}
-	<p>Oh no, something went wrong:</p>
-	<ul>
-		{{#each errors}}
-		<li>{{this}}</li>
-		{{/each}}
-	</ul>
+		<p>Oh no, something went wrong:</p>
+		<ul>
+			{{#each errors}}
+			<li>{{this}}</li>
+			{{/each}}
+		</ul>
 	{{else}}
-     <h1>All drama</h1>
-	{{#if dramas.length}}	
-	  {{#each dramas}}
-	   <div class="cont">
-     <li> {{dramaID}}. {{dramaName}} </li> 	 
-	 <li>{{dramaDescription}}</li>	
-     <a href="/dramas/{{dramaID}}"><button> click for more </button></a>		
-	 </div>
-	{{/each}}
- {{else}}
-	<p>No drama exist yet.</p>
-	{{/if}}
+		<h1>All drama</h1>
+		{{#if dramas.length}}	
+			{{#each dramas}}
+				<div class="cont">
+					<li> {{dramaID}}. {{dramaName}} </li> 	 
+					<li>{{dramaDescription}}</li>	
+					<a href="/dramas/{{dramaID}}"><button> click for more </button></a>
+				</div>
+			{{/each}}
+	{{else}}
+		<p>No drama exist yet.</p>
+		{{/if}}
 {{/if}}
 </div>

@@ -14,7 +14,7 @@ module.exports = function ({ dramaRecensionRepository, dramaRepository }) {
                 callback([], dramaRecensions)
             }
          })
-        }   else{
+         } else{
               callback(["YouNeedToLogIn"], null)
        }
     }
@@ -69,9 +69,9 @@ module.exports = function ({ dramaRecensionRepository, dramaRepository }) {
 
     exports.getDramaRecensionById = function (authorization, id, callback) {
         if(authorization && authorization.isLoggedIn){
-             dramaRecensionRepository.getDramaRecensionById(id, function(errors, dramaRecensionData){
-                 if(errors.length > 0){
-                     callback(errors, null)
+             dramaRecensionRepository.getDramaRecensionById(id, function(error, dramaRecensionData){
+                 if(error.length > 0){
+                     callback(error, null)
                  }
                  else{
                      callback([], dramaRecensionData)

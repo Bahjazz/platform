@@ -7,7 +7,7 @@ exports.getAllDramas = function(callback){
     const query = 'SELECT * FROM dramas ORDER BY DramaID'
     const values = []
     db.query(query, values, function(error, dramas){
-        console.log(dramas)
+        console.log("line 10 drama-repository " + dramas)
         if(error){
             callback(['internalError'], null)
         }else{
@@ -18,12 +18,16 @@ exports.getAllDramas = function(callback){
 
 
 exports.getDramaById = function(id, callback){
-    const query = 'SELECT accounts.username, dramas.dramaID, dramas.dramaName, dramas.dramaDescription, dramas.accountID FROM dramas JOIN accounts ON accounts.accountID = dramas.accountID WHERE dramaID = ? LIMIT 1'
+    const query = 'SELECT accounts.username, dramas.dramaID, dramas.dramaName, dramas.dramaDescription, dramas.accountID FROM dramas JOIN accounts ON accounts.accountID = dramas.accountID WHERE dramas.dramaID = ? LIMIT 1'
     const values = [id]
+    console.log("Line 23, drama-repository.js, id = " + String(id))
+
     db.query(query, values, function(error, dramas){
         if(error){
             callback(['internalError'], null)
         }else{
+            console.log("Line 29, drama-repository.js, drama = " + dramas )
+            console.log(dramas[0])
             callback([], dramas[0])
         }
     })
@@ -31,15 +35,14 @@ exports.getDramaById = function(id, callback){
 
 
 exports.createDrama = function(drama, callback){
-    const query = ' INSERT INTO dramas(dramaName, dramaDescription,accountID) VALUES(?,?,?)'
+    const query = `INSERT INTO dramas (dramaName, dramaDescription,accountID) VALUES(?,?,?)`
     const values = [drama.dramaName, drama.dramaDescription, drama.accountID]
-    db.query(query, values, function(error, results){
+    db.query(query, values, function(error, newDrama){
         if(error){
             console.log(error.sqlMessage)
                  callback(['internalError', null])
         }else{
-            console.log(results)
-            callback([], results.insertId)
+            callback([], newDrama.insertId)
         }
     })
 }

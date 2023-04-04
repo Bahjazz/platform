@@ -4,106 +4,158 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 	<link rel="stylesheet" href="./spa.css">
 	<script src = "./index.js"></script>
 	<title>Kdrama</title>
 
 </head>
 	<body class="is-logged-out">
+		<div class="columns col-gapless">
+			<div class="column col-3">
+				<nav id="menu">
 		<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/dramas">Dramas</a></li>
-				<li class="if-is-logged-in"><a href="/create-drama">Create Drama</a></li>
-				<li><a class="if-is-logged-out"><a href="/login">Sign In</a></li>
+		<li><b><em>Account</em></b>
+
+		<ul>
+				<li><a href="/home">Home</a></li>
+				<li class="if-is-logged-in"><a href="/accounts">All Account </a></li>
 				<li><a class="if-is-logged-out"><a href="/create-account">Sign Up</a></li>
-                   </ul>
-				   <div id = click-signOut>
-					   <button class="if-is-logged-in" type="click" name="logout-btn">SignOut</button>
-				   </div>
+				<li><a class="if-is-logged-out"><a href="/update-account">Update Account</a></li>
+				<li><a class="if-is-logged-out"><a href="/delete-account">Delete Account</a></li>
+			</ul>
+		
+		</li>
 
+			<li><b><em>Drama</em></b>
+			<ul>
+				<li><a href="/"> All Dramas</a></li>
+				<li class="if-is-logged-in"><a href="/create-drama">Create Drama</a></li>
+			</ul>
+		   </li>	
+
+			<li><a class="if-is-logged-out"><a href="/login">Sign In</a></li>
+			<a class="if-is-logged-in"  id="click_logout" href="/logout">Sign Out</a>		
+            </ul>
+		</nav>		
+	</div>
+
+	<div class="column col-3">
 		<main>
-
-			<div class="page" id="home-page">
+	      <div class="page" id="home-page">
 				<h1>Home</h1>
-				<p>Welcome to kdramaUnited!</p>
-				<p>Go to <a href="/dramas">drama page</a>.</p>
-			</div>
+				<p>Welcome! This is a place for discussions and news about your favorite Korean drama series (current and past), the actors and actresses, drama reviews, official soundtracks, award shows, and more. Be sure to check out our sidebar for helpful info and resources!. <br>
+				</p>
 
-			<div class="page" id="drama-page">
-				<h1>Drama</h1>
-				<p>The Drama page...</p>
 			</div>
-
-			<div class="page" id="SignUp-page">
-				<h1>Sign Up</h1>
-				<form action = "" id="SignUp-Form" name="create-accounts"></div>
-				<div>
-						<label>username:</label>
-						<input type="text" id="username" placeholder="Username" required>
-					</div>
-                <div> 
-					<label>Password: </label> 
-					<input type="password" id="password" placeholder="password" required>
-				</div>  
 			
-				 <button type="submit" value="create-accounts">Sign Up</button>
+			<div class="page" id="accounts-page">
+				</div>
+			<div class="page" id="create-account-page">
+               <h1>Sign Up</h1>
+			   <form action="" id="create-account-form">
+                <div>
+					Username: <input type="text" id="username">
+				</div>
+				<div>
+					Password: <input type="password" id="password">
+				</div>
+				<input type="submit" value="Create">
 				</form>
 			</div>
-
-				<div class="page" id="login-page">
-					<h1>Sign In</h1>
-					<form action="" id="login-form">
-						<div>
-							Username: <input type="text" id="username-signIn">
-						</div>
-						<div>
-							Password: <input type="password" id="password-signIn">
-						</div>
-						<input type="submit" value="sign in">
-					</form>
-				</div>
+			<div class="page" id="login-page">
+				<h1>Sign In</h1>
+				<form action="" id="login-form">
+					<div>
+						Username: <input type="text" id="username_single">
+					</div>
+					<div>
+						Password: <input type="password" id="password_single">
+					</div>
+					<input type="submit" value="Login">
+				</form>
 			</div>
-
-
+			<div class="page" id="logout-page">
+				<p>You have signed out!</p>
+			</div>
+			<div class="page" id="update-account-page">
+				<h1>Update Account</h1>
+				<form action="" id="update-account-form">
+					<div>
+						<input type="hidden" id="accountID" >
+					</div>
+					<div>
+						Username: <input type="text" id="update_username">
+					</div>
+					<input type="submit" value="Update">
+				</form>
+			</div>
+			<div class="page" id="drama-page">
+			</div>
 			<div class="page" id="create-drama-page">
+				<h1>Create Drama</h1>
 				<form action="" id="create-drama-form">
 					<div>
 						Name: <input type="name" id="name">
 					</div>
 					<div>
-						description: <textarea type="text" id="description" rows = "4" cols ="60"></textarea>
+						description: <textarea type="text" id="Drama-description" rows = "6" cols ="60"></textarea>
 					</div>
-					<div>
-					<input type="Submit" id="create-btn" value="CREATE">
-				    </div>
-				</form>
-			</div>
+					<input type="Submit" value="create Drama">
+				  </form>
+				 </div>
 
 			<div class="page" id="update-drama-page">
+				<h1>Update Drama</h1>
 				<form action="" id="update-drama-form">
 					<div>
-						New Name: <input type="name" id="newName">
+                     <input type="hidden" id="dramaID">
+					</div>
+                      <div>
+						<input type="hidden" id="dramaAccountID">
+					  </div>
+					<div>
+						New Name: <input type="name" id="update_name">
 					</div>
 					<div>
-						New Description: <textarea type="text" id="newDescription" rows = "4" cols ="60"></textarea>
+						New Description: <textarea type="text" id="update_description" rows = "4" cols ="60"></textarea>
 					</div>
-
-					<div>
-					<input type="hidden" id="authId" value="UPDATE">
-				    </div>
+					<input type="submit" value="update Drama">
 				</form>
 			</div>
+		
+			<div class="page" id="delete-drama-page">
+				<h1>Are you sure you want to delete the drama</h1>
+				<form action="" id="delete-drama-form">
+                  <div>
+					<input type="hidden"  id="dramaID">
+				  </div>
+				  <div>
+					<input type="hidden" id="dramaAccountID">
+				  </div>
 
-			<div class="page" id="all-dramas-page"></div>
-
-			<div class="page" id="drama-page"></div>
-
+				  <div>
+					Name: <input type="name" id="delete-name">
+				</div>
+				<div>
+					description: <textarea type="text" id="delete-description" rows = "6" cols ="60"></textarea>
+				</div>
+                <input type="submit" value="Delete Drama">
+				</form>
+			</div>
+			<div class="page" id="drama-page">
+			</div>
 			<div class="page" id="not-found-page">
 				<h1>Not Found</h1>
 			</div>
 
 		</main>
+		</div>
+		</div>
 
-	</body>
-
-</html>
+	
+    <footer id="footer"><p>By Bahja Faqid and Jenny Jansson</p>
+		</footer>
+	
+</body>
+</html> 
