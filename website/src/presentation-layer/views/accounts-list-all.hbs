@@ -1,21 +1,21 @@
 <div class="content">
-<h1>All account</h1>
+   <h1>All account</h1>
 {{#if errors.length}}
-	<p>Oh no, something went wrong:</p>
-	<ul>
-		{{#each errors}}
-			<li>{{this}}</li>
-		{{/each}}
-	</ul>
-    {{else}}
+	 <p>Oh no, something went wrong:</p>
+	  <ul>
+			{{#each errors}}
+				<li>{{this}}</li>
+			{{/each}}
+	   </ul>
+{{else}}
 	{{#if accounts.length}}
-	{{#each accounts}}
+       {{#each accounts}}
 	<div class="cont">
 		 <li>{{accountID}}.  {{username}}</li>
 	</div>
-	{{/each}}
-	{{else}}
+	   {{/each}}
+{{else}}
 		<p>Accounts doesn't exist.</p>
 	{{/if}}
-   {{/if}}
+{{/if}}
 </div>

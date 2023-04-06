@@ -1,23 +1,21 @@
 <h2>Create a recension. </h2>
 {{#if errors.length}}
 <div class="error">
-	<p>Fix the errors for drama recension</p>
-	<ul>
-	{{#each errors}}
-		<li>{{this}}</li>
-	{{/each}}
-</ul>
-</div>
+	 <p>Fix the errors for drama recension</p>
+		<ul>
+		{{#each errors}}
+			<li>{{this}}</li>
+		{{/each}}
+		</ul>
+ </div>
 {{/if}}
   <br>
 <form action="" method="POST" class="form" id = "post">
-	 <input type="hidden" name="_csrf" value="{{csrfToken}}">
-	 
-	 <label class="form-label" for="input-example-3">DramaRecension Description</label>
-	 
-	<textarea class="form-input" id="input-example-3" placeholder="Content" name="description" rows="5"
-	value="{{dramaRecensionDescription}}"></textarea>	 
-   <input type="submit" class="btn btn-primary input-group-btn" 
-   value="Create DramaRecension">
-	</form>
+		<input type="hidden" name="_csrf" value="{{csrfToken}}">
+		<label class="form-label" for="input-example-3">DramaRecension Description</label>
+		<textarea class="form-input" id="input-example-3" placeholder="Content" name="description" rows="5"
+		value="{{dramaRecensionDescription}}"></textarea>	 
+		<input type="submit" class="btn btn-primary input-group-btn" 
+		value="Create DramaRecension">
+</form>
 
