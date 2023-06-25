@@ -6,12 +6,11 @@ const jsonwebtoken = require('jsonwebtoken')
 
 module.exports = function ({ accountManager }) {
     const router = express.Router()
-
     function getUserIfSignedIn(requestHeader){
         let signedIn
         const authorizationHeader = requestHeader
         const accessToken = authorizationHeader.substring("Bearer ".length)
-        jsonwebtoken.verify(accessToken,ACCESS_TOKEN_SECRET, function(error, payload) {
+        jsonwebtoken.verify(accessToken, ACCESS_TOKEN_SECRET, function(error, payload) {
             if(error){
                 signedIn = null   
             }
@@ -23,7 +22,8 @@ module.exports = function ({ accountManager }) {
     router.get("/", function (request, response) {
         const requestHeader = request.header("Authorization")
         const signedInUser = getUserIfSignedIn(requestHeader)
-        accountManager.getAllAccounts(signedInUser,function (errors, accounts) {
+        console.log('Line 25,count-router.js, ')
+        accountManager.getAllAccounts(signedInUser, function (errors, accounts) {
             if (errors.length > 0) {
                 if(errors == "YouNeedToLogIn"){
                     response.status(401).json('Are you sure that you are signed in ?')
@@ -39,9 +39,10 @@ module.exports = function ({ accountManager }) {
         const account = {
             username: request.body.username,
             password: request.body.password
-
         }
+        console.log('line 43')
         accountManager.createAccount(account, function (error, id) {
+            console.log('line 44 rest api')
                 if (error.length == 0) {
                     response.setHeader("Location", "/accounts/" + id)
                     result ={
@@ -71,15 +72,15 @@ module.exports = function ({ accountManager }) {
         const requestHeader = request.header("Authorization")
         const signedInUser = getUserIfSignedIn(requestHeader)
         const account = {
-             accountID: signedInUser.userID,
+             accountID: signedInUser.userID
        
         }
-        accountManager.updateAccount(signedInUser,account, function (error) {
+        accountManager.updateAccount(signedInUser, account, function (error) {
             if (error.length == 0) {
                 response.setHeader("Location", "/accounts/" + account.accountID)
-                response.status(201).json(account)
+                 response.status(201).json(account)
             } else { 
-                if (errors == "internalError") {
+                if (error == "internalError") {
                     response.status(500).end()
                 }
                 if(error == "YouNeedToLogIn"){
@@ -105,7 +106,7 @@ module.exports = function ({ accountManager }) {
                 }  
                 response.status(200).json(result)
             } else { 
-                if (errors == "internalError") {
+                if (error == "internalError") {
                     response.status(500).end()
                 }
                 if(error == "YouNeedToLogIn"){
@@ -123,14 +124,15 @@ module.exports = function ({ accountManager }) {
             username: request.body.username,
             password:request.body.password
         }
+        console.log("Line 128, account-router.js, tokens-log in")
         accountManager.logIn(data,function(error,account){
             if(error.length == 0){
                 const payload ={
                     isLoggedIn: true,
                     userID: account.userID,
-                    username:account.username
+                    username: account.username
                 }
-                jsonwebtoken.sign(payload,ACCESS_TOKEN_SECRET,{expiresIn: '1d'}, function(erro,token){
+                jsonwebtoken.sign(payload, ACCESS_TOKEN_SECRET,{expiresIn: '1d'}, function(erro, token){
                      if(erro){
                          response.status(401).json({error:"Not reachable"})
                      }else{
@@ -155,11 +157,11 @@ module.exports = function ({ accountManager }) {
            }
         })
     })
-    router.get('/:id', function(request,response){
+    router.get('/:id', function(request, response){
         const requestHeader = request.header("Authorization")
         const signedInUser = getUserIfSignedIn(requestHeader)
-        accountManager.getAccountByUsername(signedInUser,function(errors,account){
-            if(errors.length ==0){
+        accountManager.getAccountByUsername(signedInUser, function(errors, account){
+            if(errors.length == 0){
                 response.status(200).json(account)
             }else{
                 if (errors == "internalError") {
@@ -168,7 +170,7 @@ module.exports = function ({ accountManager }) {
             if(errors == "YouNeedToLogIn"){
                 response.status(401).json('Are you sure that you are signed in ?')
             } else {
-            response.status(403).json(errors)
+             response.status(403).json(errors)
          }
       }
     })

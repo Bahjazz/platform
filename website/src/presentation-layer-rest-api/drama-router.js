@@ -39,9 +39,9 @@ module.exports = function ({ dramaManager }) {
         const requestHeader = request.header("Authorization")
         const signedInUser = getUserIfSignedIn(requestHeader)
         const drama = {
-            name: request.body.name,
-            description: request.body.description,
-            accountID:signedInUser.userID
+            dramaName: request.body.dramaName,
+            dramaDescription: request.body.dramaDescription,
+            accountID: signedInUser.userID
         }
         dramaManager.createDrama(drama, function (errors, id) {
             if (errors.length == 0) {
@@ -65,7 +65,7 @@ module.exports = function ({ dramaManager }) {
         const signedInUser = getUserIfSignedIn(requestHeader)
         dramaManager.getDramaById(signedInUser, id, function(errors, drama){
             if(errors.length == 0){
-                response.status(200).json([drama,signedInUser])
+                response.status(200).json([drama, signedInUser])
             }else{
                 if (errors == "internalError") {
                     response.status(500).json(errors)
@@ -86,12 +86,12 @@ module.exports = function ({ dramaManager }) {
         const signedInUser = getUserIfSignedIn(requestHeader)
         const drama = {
             dramaID: request.body.dramaID,
-            name: request.body.name,
-            description: request.body.description,
+            dramaName: request.body.dramaName,
+            dramaDescription: request.body.dramaDescription,
             accountID:request.body.accountID
         }
         dramaManager.updateDrama(signedInUser, drama, function (errors) {
-            if (error.length == 0) {
+            if (errors.length == 0) {
                 response.setHeader("Location", "/dramas/" + request.body.dramaID)
                 response.status(204).end()
             } else {
@@ -111,7 +111,7 @@ module.exports = function ({ dramaManager }) {
     router.delete("/", function (request, response) {
         const requestHeader = request.header("Authorization")
         const signedInUser = getUserIfSignedIn(requestHeader)
-        const id =request.body.dramaID
+        const id = request.body.dramaID
         dramaManager.deleteDramaById(signedInUser, id, function (errors) {
             if (errors.length == 0) {
                 response.setHeader("Location", "/dramas/" + id)

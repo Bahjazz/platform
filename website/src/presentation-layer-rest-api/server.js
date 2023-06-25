@@ -12,7 +12,8 @@ module.exports = function ({ accountRouterApi, dramaRouterApi }) {
 
     server.use(function (request, response, next) {
 
-        response.setHeader("Access-Control-Allow-Origin", "*")
+        response.setHeader("Access-Control-Allow-Origin","*")
+        response.setHeader("Access-Control-Allow-Credentials", "true")
         response.setHeader("Access-Control-Allow-Methods", "*")
         response.setHeader("Access-Control-Allow-Headers", "*")
         response.setHeader("Access-Control-Allow-Expose-Headers", "*")

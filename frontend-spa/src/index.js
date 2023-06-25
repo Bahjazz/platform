@@ -1,4 +1,4 @@
-    const BACKEND_URI = "http://localhost:8080/api"
+    const BACKEND_URI = "http://localhost:3000/api/"
     const MIN_USERNAME_LENGTH = 2
     const MIN_PASSWORD_LENGTH = 4
     let accessToken = ""
@@ -6,7 +6,6 @@
     let activeUser
 
     
-
 
     function validateUsername(username){
         if(username.length < MIN_USERNAME_LENGTH){
@@ -65,6 +64,7 @@
                     activeUser = body.user
                     const uri = "/"
                     history.pushState({}, "", uri)
+                    hideCurrentPage()
                     showPage(uri)
                     document.body.classList.add("is-logged-in")
                     document.body.classList.remove("is-logged-out")
@@ -115,13 +115,16 @@
               username,
               password
             }
-            const response = await fetch(BACKEND_URI+"accounts", {
+            console.log('line 118 create account')
+            const response = await fetch(BACKEND_URI + "accounts", {
+                
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(account)
-            })            
+            }) 
+            console.log('line 128 create account status code = ', response.status)         
             switch(response.status){
                 case 201:
                     const activePageUri = "/login"
@@ -153,7 +156,7 @@
                 accountID: document.getElementById("accountID").value,
                 username
              }
-             const response = await fetch(BACKEND_URI+"accounts/", {
+             const response = await fetch(BACKEND_URI + "accounts/", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -168,7 +171,7 @@
                 hideCurrentPage()
                 showPage(activePageUri)  
                 const updateAccount =  await response.json()
-                window.alert("update account. username = " + updateAccount.username)
+                window.alert("update account, username = " + updateAccount.username)
                 break
             case 500:
                 const loginError = document.createElement("h1")
@@ -206,7 +209,7 @@
             const user = {
                 accountID 
             }
-            const response = await fetch(BACKEND_URI+"accounts/", {
+            const response = await fetch(BACKEND_URI + "accounts/", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -270,9 +273,9 @@
            const drama = {
             dramaDescription: document.getElementById("Drama-description").value,
             dramaName: document.getElementById("name").value,
-            userID:dramaAccountID
+            userID: dramaAccountID
            }
-           const response = await fetch(BACKEND_URI+"dramas", {
+           const response = await fetch(BACKEND_URI + "dramas", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -322,9 +325,9 @@
             dramaID : document.getElementById("dramaID").value,
             dramaName: document.getElementById("update_name").value,
             dramaDescription: document.getElementById("update_description").value,
-            accountID: document.getElementById(" dramaAccountID").value
+            accountID: document.getElementById("dramaAccountID").value
            }
-           const response = await fetch(BACKEND_URI+"dramas/", {
+           const response = await fetch(BACKEND_URI + "dramas/", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -375,7 +378,7 @@
             dramaDescription: document.getElementById("update_description").value,
             accountID: document.getElementById("dramaAccountID").value
         }
-        const response = await fetch(BACKEND_URI+"dramas/", {
+        const response = await fetch(BACKEND_URI + "dramas/", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -493,7 +496,7 @@
         paragraph.innerText = "Welcome to kdramaUnited, you can view dramas on this page"
         page.appendChild(paragraph)
 
-        const response = await fetch(BACKEND_URI+"dramas")
+        const response = await fetch(BACKEND_URI + "dramas")
         switch(response.status){ 
             case 200:
                 const dramas = await response.json()
@@ -544,7 +547,7 @@
         const h1 = document.createElement("h1")
         h1.innerText = "Dramas"
         page.appendChild(h1)
-        const response = await fetch(BACKEND_URI + "dramas/"+dramaId, {
+        const response = await fetch(BACKEND_URI + "dramas/"+ dramaId, {
             method: "GET",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
